@@ -1,11 +1,19 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ToDoList.Models;  //this connects to namespace in ToDoList.cs
+using System.Collections.Generic;
+using System;
 
 namespace ToDoList.Test
 {
   [TestClass]
-  public class ItemTests
+  public class ItemTests : IDisposable
   {
+
+    public void Dispose()
+    {
+      Item.ClearAll();
+    }
+
     [TestMethod]
     public void ItemConstructor_CreatesInstanceOfItem_Item()
     {
@@ -43,6 +51,20 @@ namespace ToDoList.Test
       Assert.AreEqual(updatedDescription, result);
     }
 
+    [TestMethod]
+    public void GetAll_ReturnsEmptyList_ItemList()
+    {
+      // Arrange
+      List<Item> newList = new List<Item> { };
 
+      //Act
+      List<Item> result = Item.GetAll();
+
+      //Asset
+      CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    
   }
 }
