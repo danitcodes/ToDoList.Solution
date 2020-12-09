@@ -2,7 +2,7 @@ namespace ToDoList.Models
 {
   public class Item
   {
-    public string Description { get; }  //constructor more or less
+    public string Description { get; set; }  //constructor more or less
 
     public Item(string description) // description is argument of new instance
     {

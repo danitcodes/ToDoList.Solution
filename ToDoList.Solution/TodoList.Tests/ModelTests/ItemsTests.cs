@@ -26,6 +26,22 @@ namespace ToDoList.Test
       //Assert
       Assert.AreEqual(description, result); //tests that expected result matches description of new item
     }
+    
+    [TestMethod]
+    public void SetDescription_SetDescription_String()
+    {
+      //Arrange
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
+
+      //Act
+      string updatedDescription = "Do the dishes";
+      newItem.Description = updatedDescription;
+      string result = newItem.Description;
+
+      //Assert
+      Assert.AreEqual(updatedDescription, result);
+    }
 
 
   }
