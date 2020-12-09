@@ -1,4 +1,4 @@
-# To DO List in C#
+# To Do List in C#
 
 #### In-class Practice Assignment during Epicodus Coding School, C# Practice with test driven development, MSTest, and the Red, Green, Refactor workflow, 12.09.2020
 
