@@ -1,4 +1,4 @@
-using System;  // cnct to ... ?
+using System;  // cnct to Read/write Console fxn
 using System.Collections.Generic; //cnct to built-in items
 using ToDoList.Models;  //cnct to biz logic
 
