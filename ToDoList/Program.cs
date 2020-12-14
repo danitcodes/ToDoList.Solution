@@ -24,6 +24,7 @@ public class Program
     } 
     else if (response == "view")
     {
+      //add inner if/else statement for when user asks to view list before adding items to it
       Item.GetAll().ForEach(i => Console.WriteLine(i.Description));
       Program.Main();
     }
@@ -32,4 +33,3 @@ public class Program
     }
   }
 }
-

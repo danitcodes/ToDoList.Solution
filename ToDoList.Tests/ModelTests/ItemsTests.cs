@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ToDoList.Models;  //this connects to namespace in ToDoList.cs
+using ToDoList.Models;  //this connects to namespace in Item.cs
 using System.Collections.Generic;
 using System;
 
