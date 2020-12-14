@@ -9,3 +9,14 @@
 /Users/dthompson/Desktop/ToDoList-kaila/ToDoList.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.pdb
 /Users/dthompson/Desktop/ToDoList-kaila/ToDoList.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.runtimeconfig.json
 /Users/dthompson/Desktop/ToDoList-kaila/ToDoList.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.runtimeconfig.dev.json
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.deps.json
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.runtimeconfig.json
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.runtimeconfig.dev.json
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.dll
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.pdb
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.csprojAssemblyReference.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.csproj.CoreCompileInputs.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.AssemblyInfoInputs.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.AssemblyInfo.cs
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.dll
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.pdb
