@@ -26,6 +26,8 @@ Consider what the program should print if the user asks to view their list befor
 - C# v 7.3
 - .NET Core v 2.2
 - dotnet script, REPL
+- ASP.NET MVC Core
+- Razor
 
 ## Installation Requirements
 
