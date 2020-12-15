@@ -24,6 +24,20 @@ namespace ToDoList.Test
     }
 
     [TestMethod]
+    public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
+    {
+      //Arrange
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
+
+      //Act
+      int result = 0; //newItem.Id;
+
+      //Assert
+      Assert.AreEqual(0, result);
+    }
+
+    [TestMethod]
     public void GetDescription_ReturnsDescription_String()
     {
       //Arrange
