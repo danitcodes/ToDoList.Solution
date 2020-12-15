@@ -20,3 +20,16 @@
 /Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.AssemblyInfo.cs
 /Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.dll
 /Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.pdb
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.Views.dll
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/bin/Debug/netcoreapp2.2/ToDoList.Views.pdb
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.RazorAssemblyInfo.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.RazorAssemblyInfo.cs
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.TagHelpers.input.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.TagHelpers.output.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.RazorCoreGenerate.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.g.cshtml.cs
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.RazorTargetAssemblyInfo.cache
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.RazorTargetAssemblyInfo.cs
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.Views.pdb
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.csproj.CopyComplete
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/Razor/Views/Home/CreateForm.g.cshtml.cs
