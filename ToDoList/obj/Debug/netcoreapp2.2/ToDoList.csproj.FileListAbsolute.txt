@@ -34,3 +34,4 @@
 /Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/ToDoList.csproj.CopyComplete
 /Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/Razor/Views/Items/Index.g.cshtml.cs
 /Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/Razor/Views/Items/CreateForm.g.cshtml.cs
+/Users/dthompson/Desktop/ToDoListWKaila.Solution/ToDoList/obj/Debug/netcoreapp2.2/Razor/Views/Items/DeleteAll.g.cshtml.cs
