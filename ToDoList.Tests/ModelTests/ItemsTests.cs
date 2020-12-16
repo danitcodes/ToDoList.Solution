@@ -47,10 +47,10 @@ namespace ToDoList.Test
       Item newItem2 = new Item(description02);
 
       //Act
-      Item result = new Item("Incorrect test item"); //Item.Find(2);
+      Item result = Item.Find(2);
 
       //Assert
-      Assert.AreEqual("Incorrect test item", result);
+      Assert.AreEqual(newItem2, result);
     }
 
     [TestMethod]
