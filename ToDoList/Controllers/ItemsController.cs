@@ -14,13 +14,6 @@ namespace ToDoList.Controllers
       return View(category);
     } //offers form to create new Item w/in specific Category
 
-    [HttpPost("/items")]
-    public ActionResult Create(string description)
-    {
-      Item myItem = new Item(description);
-      return RedirectToAction("Index");
-    } //Creates new Item w/in specific Category on server
-
     [HttpGet("/categories/{categoryId}/items/{itemId}")]
     public ActionResult Show(int categoryId, int itemId)
     {
