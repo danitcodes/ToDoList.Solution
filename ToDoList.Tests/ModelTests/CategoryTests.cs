@@ -64,5 +64,21 @@ namespace ToDoList.Tests
       //Assert
       CollectionAssert.AreEqual(newList, result);
     }
+
+    [TestMethod]
+    public void Find_ReturnsCorrectCategory_Category()
+    {
+    //Arrange
+    string name01 = "Work";
+    string name02 = "School";
+    Category newCategory1 = new Category(name01);
+    Category newCategory2 = new Category(name02);
+
+    //Act
+    Category result = Category.Find(2);
+
+    //Assert
+    Assert.AreEqual(newCategory2, result);
+    }
   }
 }
