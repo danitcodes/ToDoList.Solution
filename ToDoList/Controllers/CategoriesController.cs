@@ -12,20 +12,20 @@ namespace ToDoList.Controllers
       {
         List<Category> allCategories = Category.GetAll();
         return View(allCategories);
-      }
+      } //displays list of all Categories
 
       [HttpGet("/categories/new")]
       public ActionResult New()
       {
         return View();
-      }
+      } //Offers form to create new Category
 
       [HttpPost("/categories")]
       public ActionResult Create(string categoryName)
       {
         Category newCategory = new Category(categoryName);
         return RedirectToAction("Index");
-      }
+      } //Creates new Categories on server
 
       [HttpGet("/categories/{id}")]
       public ActionResult Show(int id)
@@ -36,6 +36,6 @@ namespace ToDoList.Controllers
         model.Add("category", selectedCategory);
         model.Add("items", categoryItems);
         return View(model); //View() can only accept one argument
-      }
+      } //Displays one specific Category's details
   }
 }
