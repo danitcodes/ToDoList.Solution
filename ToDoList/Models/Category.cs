@@ -21,5 +21,10 @@ namespace ToDoList.Models
     {
       _instances.Clear();
     }
+
+    public static List<Category> GetAll()
+    {
+      return _instances;
+    }
   }
 }
