@@ -36,10 +36,10 @@ namespace ToDoList
 
       app.UseStaticFiles(); //needs to be before app.Run or the files will not load
 
-        app.Run(async (context) =>
-        {
-          await context.Response.WriteAsync("Something went wrong!");
-        });
+      app.Run(async (context) =>
+      {
+        await context.Response.WriteAsync("Something went wrong!");
+      });
 
     }
   }

@@ -5,9 +5,6 @@ namespace ToDoList.Models
   public class Category
   {
     private static List<Category> _instances = new List<Category> {};
-    public string Name { get; set; }
-    public int Id { get; }
-    public List<Item> Items { get; set; }
 
     public Category(string categoryName)
     {
@@ -31,10 +28,14 @@ namespace ToDoList.Models
     {
       return _instances[searchId-1];
     }
-
-    public void AddItem(Item item)
+  
+    public void Add(Item item)
     {
       Items.Add(item);
     }
+    
+    public string Name { get; set; }
+    public int Id { get; }
+    public List<Item> Items { get; set; }
   }
 }

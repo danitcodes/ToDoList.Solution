@@ -91,7 +91,7 @@ namespace ToDoList.Tests
 
       string name = "Work";
       Category newCategory = new Category(name);
-      newCategory.AddItem(newItem);
+      newCategory.Add(newItem);
 
       //Act
       List<Item> result = newCategory.Items;
