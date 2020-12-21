@@ -111,6 +111,21 @@ namespace ToDoList.Test
       Assert.AreEqual(firstItem, secondItem);
     }
 
+    [TestMethod]
+    public void Save_SavesToDatabase_ItemList()
+    {
+      //Arrange
+      Item testItem = new Item("Mow the lawn");
+
+      //Act
+      testItem.Save(); //saves
+      List<Item> result = Item.GetAll(); // retrieves for verification of save
+      List<Item> testList = new List<Item>{testItem};
+
+      //Assert
+      CollectionAssert.AreEqual(testList, result); //testList & result should be the same b/c we overrode the Equals() method
+    }
+
   //   [TestMethod]
   //   public void GetAll_ReturnsItems_ItemList()
   //   {
