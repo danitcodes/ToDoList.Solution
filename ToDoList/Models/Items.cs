@@ -18,6 +18,21 @@ namespace ToDoList.Models
       Description = description;
       Id = id;
     }
+
+    public override bool Equals(System.Object otherItem) //must go below props & constructors, but above other file methods; Equals() is built into C#
+      {
+        if (!(otherItem is Item))
+        {
+          return false;
+        }
+        else
+        {
+          Item newItem = (Item) otherItem;
+          bool descriptionEquality = (this.Description == newItem.Description);
+          return descriptionEquality;
+        }
+      }
+    
     public static List<Item> GetAll()
     { // boilerplate to demonstrate what's under the hood of a .NET app interacting w/ a database; will be refactored again w/ Entity
       List<Item> allItems = new List<Item>{ }; //makes new list
