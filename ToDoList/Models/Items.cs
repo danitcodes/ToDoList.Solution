@@ -6,7 +6,7 @@ namespace ToDoList.Models
   public class Item
   {
     public string Description { get; set; }  //constructor more or less
-    public int Id { get; }  //readonly property - don't ever manually edit b/c could make Ids not unique
+    public int Id { get; set; }  //readonly property - don't ever manually edit b/c could make Ids not unique
     public Item(string description) // description is argument of new instance
     {
       Description = description;
@@ -35,7 +35,23 @@ namespace ToDoList.Models
     
     public void Save()
     {
-      
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+
+      cmd.CommandText = @"INSERT INTO items (description) VALUES (@ItemDescription);";
+      MySqlParameter description = new MySqlParameter();//next 3 lines passes a MySqlParameter Object into a SqlCommand; MySqlParameter object created for each parameter req'd in command string
+      description.ParameterName = "@ItemDescription"; //define ParameterName property of description w/ placeholder
+      description.Value = this.Description; //defines Value property of description - refers to auto-implemented Description property of Item we're saving
+      cmd.Parameters.Add(description); // pass description into MySqlCommand's Parameters using add; if multiple parameters, would need to add each one here
+      cmd.ExecuteNonQuery();//executes a Non-Query command
+      Id = (int) cmd.LastInsertedId; //dynamically set ids for each new Item; MySqlCommand obj has a built-in LastInsertedId property; (int) explicitly converts the mySql LastInsertedId prop into an int
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
     }
     public static List<Item> GetAll()
     { // boilerplate to demonstrate what's under the hood of a .NET app interacting w/ a database; will be refactored again w/ Entity
