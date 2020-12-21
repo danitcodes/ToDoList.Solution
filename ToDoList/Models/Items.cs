@@ -90,11 +90,40 @@ namespace ToDoList.Models
       }
     }
 
-    public static Item Find(int searchId)
+    public static Item Find(int id)
     {
-      //temp placeholder item
-      Item placeholderItem = new Item("placeholder item");
-      return placeholderItem;
+      //Open a connection.
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      //Create MySqlCommand object & add a query to its Command Text property. Always need to do for SQl queries
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM `items` WHERE id = @thisId;";
+
+      //Have to use parameter placeholders (@thisId) & a `MySql Parameter` obj to prevent SQL injection attacks
+      MySqlParameter thisId = new MySqlParameter();
+      thisId.ParameterName = "@thisId";
+      thisId.Value = id;
+      cmd.Parameters.Add(thisId);
+
+      //Use the ExecuteReader() method b/c query will be returning result that we need the method to read; (vs the ExecuteNonQuery() method for SQL commands that don't return results like Save())
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      int itemId = 0; //in case our query returns 0 so it doesn't break the application
+      string itemDescription = ""; // in case the method doesn't return a result
+      while (rdr.Read())
+      {
+        itemId = rdr.GetInt32(0);
+        itemDescription = rdr.GetString(1);
+      }
+      Item foundItem = new Item(itemDescription, itemId);
+
+      //Close the cnxn
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return foundItem;
     }
   }
 }
