@@ -1,6 +1,3 @@
-// using System;  // cnct to Console lines
-// using System.Collections.Generic; //cnct to built-in items
-// using ToDoList.Models;  //cnct to biz logic
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 

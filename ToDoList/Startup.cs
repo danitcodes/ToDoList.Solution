@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ToDoList.Models;
 
 namespace ToDoList
 {
@@ -11,20 +13,26 @@ namespace ToDoList
     public Startup(IHostingEnvironment env)
     {
       var builder = new ConfigurationBuilder()
-          .SetBasePath(env.ContentRootPath)
-          .AddEnvironmentVariables();
+        .SetBasePath(env.ContentRootPath)
+        .AddJsonFile("appsettings.json");
       Configuration = builder.Build();
     }
 
-    public IConfigurationRoot Configuration { get; }
+    public IConfigurationRoot Configuration { get; set; }
 
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc();
+
+      services.AddEntityFrameworkMySql()
+          .AddDbContext<ToDoListContext>(options => options
+          .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));          
     }
 
     public void Configure(IApplicationBuilder app)
     {
+      app.UseStaticFiles(); //needs to be before app.Run or the files will not load
+      
       app.UseDeveloperExceptionPage();
 
       app.UseMvc(routes =>
@@ -34,7 +42,6 @@ namespace ToDoList
           template: "{controller=Home}/{action=Index}/{id?}");
       });
 
-      app.UseStaticFiles(); //needs to be before app.Run or the files will not load
 
       app.Run(async (context) =>
       {
@@ -42,10 +49,5 @@ namespace ToDoList
       });
 
     }
-  }
-
-  public static class DBConfiguration 
-  {
-    public static string ConnectionString = "server=localhost; user id=root; password=epicodus;port=3306;database=to_do_list;";
   }
 }
