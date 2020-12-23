@@ -9,7 +9,7 @@ namespace ToDoList.Controllers
   {
     private readonly ToDoListContext _db; //constructor that declares a private and readonly field of type
 
-    public ItemsController(ToDoListContext db) //sets new _db property b/c of the dependency injection in AddDdContext method in ConfigureSrvcs in Startup.cs
+    public ItemsController(ToDoListContext db) //sets new _db property b/c of the dependency injection in AddDbContext method in ConfigureSrvcs in Startup.cs
     {
       _db = db;
     }
