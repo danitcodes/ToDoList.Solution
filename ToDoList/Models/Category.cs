@@ -1,43 +1,15 @@
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
-
 
 namespace ToDoList.Models
 {
   public class Category
   {
-    private static List<Category> _instances = new List<Category> {};
-
-    public Category(string categoryName)
+    public Category()
     {
-      Name = categoryName;
-      _instances.Add(this);
-      Id = _instances.Count;
-      Items = new List<Item>{};
+      this.Items = new HashSet<Item>(); //a HashSet is an unordered collection of unique elements - helps avoid exceptions in a constructor when no records exist
     }
-
-    public static void ClearAll()
-    {
-      _instances.Clear();
-    }
-
-    public static List<Category> GetAll()
-    {
-      return _instances;
-    }
-
-    public static Category Find(int searchId)
-    {
-      return _instances[searchId-1];
-    }
-  
-    public void Add(Item item)
-    {
-      Items.Add(item);
-    }
-    
+    public int CategoryId { get; set; }
     public string Name { get; set; }
-    public int Id { get; }
-    public List<Item> Items { get; set; }
-  }
+    public virtual ICollection<Item> Items { get; set; } //Items declared as an instance of ICollection - a generic interface built into .NET framework - required by Entity
+  }// `virtual` Items uses lazy loading
 }
