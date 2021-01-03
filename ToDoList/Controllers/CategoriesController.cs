@@ -1,56 +1,72 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
 using ToDoList.Models;
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace ToDoList.Controllers
 {
   public class CategoriesController : Controller
   {
-      // [HttpGet("/categories")]
-      // public ActionResult Index()
-      // {
-      //   List<Category> allCategories = Category.GetAll();
-      //   return View(allCategories);
-      // } //displays list of all Categories
+    private readonly ToDoListContext _db; //constructor - declares prvt & readonly field
 
-      // [HttpGet("/categories/new")]
-      // public ActionResult New()
-      // {
-      //   return View();
-      // } //Offers form to create new Category
+    public CategoriesController(ToDoListContext db)
+    { // sets new _db property b/c of dependency injection in Startup.cs
+      _db = db;
+    }
 
-      // [HttpPost("/categories")]
-      // public ActionResult Create(string categoryName)
-      // {
-      //   Category newCategory = new Category(categoryName);
-      //   return RedirectToAction("Index");
-      // } //Creates new Categories on server
+    public ActionResult Index() //replaces GetAll()
+    {
+      List<Category> model = _db.Categories.ToList();
+      return View(model); //holds a reference to the db, arrived data looks for object 'Categories', which turns into a List with ToList() from System.Linq
+    }
 
-      // [HttpGet("/categories/{id}")]
-      // public ActionResult Show(int id)
-      // {
-      //   Dictionary<string, object> model = new Dictionary<string, object>();
-      //   Category selectedCategory = Category.Find(id);
-      //   List<Item> categoryItems = selectedCategory.Items;
-      //   model.Add("category", selectedCategory);
-      //   model.Add("items", categoryItems);
-      //   return View(model); //View() can only accept one argument
-      // } //Displays one specific Category's details
+    public ActionResult Create() //Entity GET Request for new category
+    {
+      return View();
+    }
 
-      // [HttpPost("/categories/{categoryId}/items")]
-      //   public ActionResult Create(int categoryId, string itemDescription)
-      //   {
-      //     Dictionary<string, object> model = new Dictionary<string, object>();
-      //     Category foundCategory = Category.Find(categoryId);
-      //     Item newItem = new Item(itemDescription);
-      //     newItem.Save();
-      //     foundCategory.Add(newItem);
-      //     List<Item> categoryItems = foundCategory.Items;
-      //     model.Add("items", categoryItems);
-      //     model.Add("category", foundCategory);
-      //     return View("Show", model);
-      //   } //Creates new Item w/in specific Category on server, not new Categories
-      }
+    [HttpPost]
+    public ActionResult Create(Category category) //POST request for new category
+    {
+      _db.Categories.Add(category); //takes category as arg, adds to Category DbSet // Add() - built in method run on DBSet property
+      _db.SaveChanges(); //saves changes to db object - run on DBContext itself
+      return RedirectToAction("Index"); 
+    }
+
+    public ActionResult Details(int id) //takes id of entry to view
+    {
+      Category thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id); //id passed in to LINQ method FirstOrDefault() w/ a lamba exp.
+      return View(thisCategory);
+    }
+
+    public ActionResult Edit(int id) //routes to page w/ edit category form
+    {
+      var thisCategory = _db.Categories.First(category => category.CategoryId == id);
+      return View(thisCategory);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Category category) //POST result for updating specific category
+    {
+      _db.Entry(category).State = EntityState.Modified; // category is route parameter, passed into Entry() method, which updates its State property to EntityState.Modified so Entity knows entry has been modified
+      _db.SaveChanges(); // once entry state has been marked as Modified, asks the db to SaveChanges()
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id) //GETs correct category & returns it to view
+    {
+      var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+      return View(thisCategory);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id) // POST is DeleteConfirmed b/c C# can't duplicate method signatures
+    {
+      var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
+      _db.Categories.Remove(thisCategory); //built in Remove()
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+  }
 }

@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ToDoList.Models;
 using System.Collections.Generic;
 using System.Linq; //allows for Linq's ToList() method
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering; //ViewBag access for temp data storage from a controller to a view
 
 namespace ToDoList.Controllers
 {
@@ -17,12 +18,13 @@ namespace ToDoList.Controllers
 
     public ActionResult Index() //replaces GetAll()
     {
-      List<Item> model = _db.Items.ToList(); // db an instance of DbContext class - holding a ref to the database // then the arrived data looks for object 'Items' // which then gets turned into a list with ToList() method from System.Linq namespace
+      List<Item> model = _db.Items.Include(items => items.Category).ToList(); // for each Item in the db, include the Category it belongs to & put all Items into list - uses eager loading (not lazy loading)
       return View(model);
     }
 
     public ActionResult Create() //same as before w/o Entity - the GET request for creating a new task
     {
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
       return View();
     }
 
@@ -43,6 +45,7 @@ namespace ToDoList.Controllers
     public ActionResult Edit(int id) //routes to a page w/ edit item form for specific item
     {
       var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name"); //want items to belong to categories that already exist - do so w/ view's ViewBag property w/ SelectList helper // SelectList provides all categories for a dropdown menu plus setting the select option value to CategoryId & sel. opt display name to Name
       return View(thisItem);
     }
 
@@ -51,6 +54,21 @@ namespace ToDoList.Controllers
     {
       _db.Entry(item).State = EntityState.Modified; //pass item - route parameter - into Entry() method; then update its State property to EntityState.Modified so Entity knows entry has been modified
       _db.SaveChanges(); //once entry state has been marked as Modified, ask the db to SaveChanges()
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id) //gets the correct item and returns it to view
+    {
+      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      return View(thisItem);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id) // post is DeleteConfirmed b/c C# doesn't allow for two methods w/ same signature (= method name & parameters)
+    {
+      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      _db.Items.Remove(thisItem); // built-in Remove() method on db.Items
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
   }
