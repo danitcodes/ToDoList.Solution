@@ -21,19 +21,23 @@ namespace ToDoList.Controllers
       return View(_db.Items.ToList());
     }
 
-//     public ActionResult Create() //same as before w/o Entity - the GET request for creating a new task
-//     {
-//       ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
-//       return View();
-//     }
+    public ActionResult Create() //same as before w/o Entity - the GET request for creating a new task
+    {
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name"); //ViewBag holds categories
+      return View();
+    }
 
-//     [HttpPost]
-//     public ActionResult Create(Item item) // the POST request for creating a new task
-//     { 
-//       _db.Items.Add(item);//takes item as an argument, adds it to the Items DbSet // Add() a method run on DBSet property
-//       _db.SaveChanges(); // saves changes to database object //SaveChanges() is a method run on the DBContext itself
-//       return RedirectToAction("Index"); //redirects users to Index view afterwards
-//     }
+    [HttpPost]
+    public ActionResult Create(Item item, int CategoryId) // the POST request for creating a new task
+    { 
+      _db.Items.Add(item);//takes item as an argument, adds it to the Items DbSet // Add() a method run on DBSet property
+      if (CategoryId != 0)// conditional to handle cases where a CategoryID doesn't get passed into route, e.g. if no categories
+      {
+        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId }); // creates association btw newly created Item and a Category; can create a new CategoryItem join entity b/c Item is added and ItemId is assigned
+      }
+      _db.SaveChanges(); // saves changes to database object //SaveChanges() is a method run on the DBContext itself
+      return RedirectToAction("Index"); //redirects users to Index view afterwards
+    }
 
     public ActionResult Details(int id) //Details() takes id of entry we want to view
     {
