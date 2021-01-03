@@ -1,26 +1,25 @@
-// using Microsoft.AspNetCore.Mvc;
-// using ToDoList.Models;
-// using System.Collections.Generic;
-// using System.Linq; //allows for Linq's ToList() method
-// using Microsoft.EntityFrameworkCore;
-// using Microsoft.AspNetCore.Mvc.Rendering; //ViewBag access for temp data storage from a controller to a view
+using Microsoft.AspNetCore.Mvc; //:Controller, ActionResults, etc. 
+using ToDoList.Models;
+using System.Collections.Generic;
+using System.Linq; //allows for Linq's ToList() method
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering; //ViewBag access for temp data storage from a controller to a view
 
-// namespace ToDoList.Controllers
-// {
-//   public class ItemsController : Controller
-//   {
-//     private readonly ToDoListContext _db; //constructor that declares a private and readonly field of type
+namespace ToDoList.Controllers
+{
+  public class ItemsController : Controller
+  {
+    private readonly ToDoListContext _db; //constructor that declares a private and readonly field of type
 
-//     public ItemsController(ToDoListContext db) //sets new _db property b/c of the dependency injection in AddDbContext method in ConfigureSrvcs in Startup.cs
-//     {
-//       _db = db;
-//     }
+    public ItemsController(ToDoListContext db) //sets new _db property b/c of the dependency injection in AddDbContext method in ConfigureSrvcs in Startup.cs
+    {
+      _db = db;
+    }
 
-//     public ActionResult Index() //replaces GetAll()
-//     {
-//       List<Item> model = _db.Items.Include(items => items.Category).ToList(); // for each Item in the db, include the Category it belongs to & put all Items into list - uses eager loading (not lazy loading)
-//       return View(model);
-//     }
+    public ActionResult Index() //replaces GetAll()
+    {
+      return View(_db.Items.ToList());
+    }
 
 //     public ActionResult Create() //same as before w/o Entity - the GET request for creating a new task
 //     {
@@ -71,5 +70,5 @@
 //       _db.SaveChanges();
 //       return RedirectToAction("Index");
 //     }
-//   }
-// }
+  }
+}
