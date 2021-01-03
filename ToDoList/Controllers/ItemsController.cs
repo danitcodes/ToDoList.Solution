@@ -35,11 +35,14 @@ namespace ToDoList.Controllers
 //       return RedirectToAction("Index"); //redirects users to Index view afterwards
 //     }
 
-//     public ActionResult Details(int id) //Details() takes id of entry we want to view
-//     {
-//       Item thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);//id passed in as an arg to LINQ method FirstOrDefault() w/ a lambda
-//       return View(thisItem);
-//     }
+    public ActionResult Details(int id) //Details() takes id of entry we want to view
+    {
+      var thisItem = _db.Items // list of Item objects from db
+          .Include(item => item.Categories) // includes related Category property to each Item
+          .ThenInclude(join => join.Category) //new built-in, include the actual Category objects themselves of each CategoryItem, which is basically just a reference to the relationship // ** this returns the associated Category of a CategoryItem **
+          .FirstOrDefault(item => item.ItemId == id); // specifies which item from db we're working with
+        return View(thisItem);
+    }
 
 //     public ActionResult Edit(int id) //routes to a page w/ edit item form for specific item
 //     {
