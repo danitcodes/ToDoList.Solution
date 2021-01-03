@@ -48,20 +48,24 @@ namespace ToDoList.Controllers
         return View(thisItem);
     }
 
-//     public ActionResult Edit(int id) //routes to a page w/ edit item form for specific item
-//     {
-//       var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-//       ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name"); //want items to belong to categories that already exist - do so w/ view's ViewBag property w/ SelectList helper // SelectList provides all categories for a dropdown menu plus setting the select option value to CategoryId & sel. opt display name to Name
-//       return View(thisItem);
-//     }
+    public ActionResult Edit(int id) //routes to a page w/ edit item form for specific item
+    {
+      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name"); //want items to belong to categories that already exist - do so w/ view's ViewBag property w/ SelectList helper // SelectList provides all categories for a dropdown menu plus setting the select option value to CategoryId & sel. opt display name to Name
+      return View(thisItem);
+    }
 
-//     [HttpPost]
-//     public ActionResult Edit(Item item) // updates specific item
-//     {
-//       _db.Entry(item).State = EntityState.Modified; //pass item - route parameter - into Entry() method; then update its State property to EntityState.Modified so Entity knows entry has been modified
-//       _db.SaveChanges(); //once entry state has been marked as Modified, ask the db to SaveChanges()
-//       return RedirectToAction("Index");
-//     }
+    [HttpPost]
+    public ActionResult Edit(Item item, int CategoryId) // updates specific item
+    {
+      if (CategoryId != 0) // conditional in case no Categories yet exist or are being used
+      {
+        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+      }
+      _db.Entry(item).State = EntityState.Modified; //pass item - route parameter - into Entry() method; then update its State property to EntityState.Modified so Entity knows entry has been modified
+      _db.SaveChanges(); //once entry state has been marked as Modified, ask the db to SaveChanges()
+      return RedirectToAction("Index");
+    }
 
 //     public ActionResult Delete(int id) //gets the correct item and returns it to view
 //     {
