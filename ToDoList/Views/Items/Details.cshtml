@@ -18,6 +18,11 @@ else{
     @foreach(var join in Model.Categories) // model's Categories property now holds list of associated categories; variable is called join to specify we're accessing those categories via the join class
     {
       <li>@join.Category.Name</li>
+      @using (Html.BeginForm("DeleteCategory", "Items")) // creates separate delete button for ea category; two args passed into BeginForm(1 - route method to invoke, 2 - controller); Note: .net appends "Controller" to whatever string you pass in
+      {
+        @Html.Hidden("joinId", @join.CategoryItemId) // two args - Hidden(1- name of route parameter variable we'd like to pass, 2 - actual value of that parameter)
+        <input type="submit" value="Delete" />
+      }
     }
   </ul>
 }
