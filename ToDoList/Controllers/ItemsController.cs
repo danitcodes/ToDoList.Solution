@@ -67,21 +67,6 @@ namespace ToDoList.Controllers
       return RedirectToAction("Index");
     }
 
-//     public ActionResult Delete(int id) //gets the correct item and returns it to view
-//     {
-//       var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-//       return View(thisItem);
-//     }
-
-//     [HttpPost, ActionName("Delete")]
-//     public ActionResult DeleteConfirmed(int id) // post is DeleteConfirmed b/c C# doesn't allow for two methods w/ same signature (= method name & parameters)
-//     {
-//       var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-//       _db.Items.Remove(thisItem); // built-in Remove() method on db.Items
-//       _db.SaveChanges();
-//       return RedirectToAction("Index");
-//     }
-
     public ActionResult AddCategory(int id)
     {
       var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
@@ -96,6 +81,30 @@ namespace ToDoList.Controllers
       {
         _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
       }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id) //gets the correct item and returns it to view
+    {
+      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      return View(thisItem);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id) // post is DeleteConfirmed b/c C# doesn't allow for two methods w/ same signature (= method name & parameters)
+    {
+      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      _db.Items.Remove(thisItem); // built-in Remove() method on db.Items
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    
+    [HttpPost]
+    public ActionResult DeleteCategory(int joinId)
+    {// this route finds entry in join table by using entry's CategoryItemId seen in joinId parameter that came from HTML helper method BeginForm() in details view
+      var joinEntry = _db.CategoryItem.FirstOrDefault(entry => entry.CategoryItemId == joinId);
+      _db.CategoryItem.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
