@@ -23,6 +23,7 @@ else{
 }
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Add a Category", "AddCategory", new { id = Model.ItemId }) </p>
 <p>@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId })</p> 
-@* line 11, 13 - need to specify ItemId of the Model that is passed into this view *@
+@* lines above & below - need to specify ItemId of the Model that is passed into this view *@
 <p>@Html.ActionLink("Delete Item", "Delete", new { id = Model.ItemId })</p>

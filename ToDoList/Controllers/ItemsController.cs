@@ -81,5 +81,23 @@ namespace ToDoList.Controllers
 //       _db.SaveChanges();
 //       return RedirectToAction("Index");
 //     }
+
+    public ActionResult AddCategory(int id)
+    {
+      var thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      return View(thisItem);
+    }
+
+    [HttpPost]
+    public ActionResult AddCategory(Item item, int CategoryId)
+    { // resembles Edit() POST route w/o piece changing the state of the item in question // gives user option of adding many categories to an item
+      if (CategoryId != 0)
+      {
+        _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
