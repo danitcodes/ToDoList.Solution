@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using ToDoList.Models;
 
 namespace ToDoList.Controllers
 {
@@ -18,8 +18,7 @@ namespace ToDoList.Controllers
 
     public ActionResult Index() //replaces GetAll()
     {
-      List<Category> model = _db.Categories.ToList();
-      return View(model);
+      return View(_db.Categories.ToList());
     }
 
     public ActionResult Create() //Entity GET Request for new category
@@ -32,7 +31,7 @@ namespace ToDoList.Controllers
     {
       _db.Categories.Add(category); //takes category as arg, adds to Category DbSet // Add() - built in method run on DBSet property
       _db.SaveChanges(); //saves changes to db object - run on DBContext itself
-      return RedirectToAction("Index"); 
+      return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id) //takes id of entry to view

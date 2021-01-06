@@ -26,13 +26,13 @@ namespace ToDoList
 
       services.AddEntityFrameworkMySql()
           .AddDbContext<ToDoListContext>(options => options
-          .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));          
+          .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
 
     public void Configure(IApplicationBuilder app)
     {
       app.UseStaticFiles(); //needs to be before app.Run or the files will not load
-      
+
       app.UseDeveloperExceptionPage();
 
       app.UseMvc(routes =>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc; //:Controller, ActionResults, etc. 
+using Microsoft.AspNetCore.Mvc; //:Controller, ActionResults, etc.
 using ToDoList.Models;
 using System.Collections.Generic;
 using System.Linq; //allows for Linq's ToList() method
@@ -18,7 +18,7 @@ namespace ToDoList.Controllers
 
     public ActionResult Index() //replaces GetAll()
     {
-      return View(_db.Items.ToList());
+      return View(_db.Items.ToList()); // refers to List on Index View page to pass x data to said view
     }
 
     public ActionResult Create() //same as before w/o Entity - the GET request for creating a new task
@@ -29,11 +29,12 @@ namespace ToDoList.Controllers
 
     [HttpPost]
     public ActionResult Create(Item item, int CategoryId) // the POST request for creating a new task
-    { 
+    {
       _db.Items.Add(item);//takes item as an argument, adds it to the Items DbSet // Add() a method run on DBSet property
       if (CategoryId != 0)// conditional to handle cases where a CategoryID doesn't get passed into route, e.g. if no categories
       {
         _db.CategoryItem.Add(new CategoryItem() { CategoryId = CategoryId, ItemId = item.ItemId }); // creates association btw newly created Item and a Category; can create a new CategoryItem join entity b/c Item is added and ItemId is assigned
+        // table call is _db.CategoryItem // CategoryItem is line in table // w/ two {properties} of the line
       }
       _db.SaveChanges(); // saves changes to database object //SaveChanges() is a method run on the DBContext itself
       return RedirectToAction("Index"); //redirects users to Index view afterwards
@@ -99,7 +100,7 @@ namespace ToDoList.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    
+
     [HttpPost]
     public ActionResult DeleteCategory(int joinId)
     {// this route finds entry in join table by using entry's CategoryItemId seen in joinId parameter that came from HTML helper method BeginForm() in details view
