@@ -28,6 +28,15 @@ Consider what the program should print if the user asks to view their list befor
 - dotnet script, REPL
 - ASP.NET MVC Core
 - Razor
+- C# v 7.3
+- .NET Core v 2.2
+- MySQL, MySQL Workbench
+- Entity Framework Core, CRUD, RESTful routing
+- dotnet script, REPL
+- ASP.NET MVC Core
+- Razor
+- [SQL Design Planner](https://ondras.zarovi.cz/sql/demo/)
+- [Visual Code Studio](https://code.visualstudio.com/)
 
 ## Installation Requirements
 
@@ -52,12 +61,12 @@ Consider what the program should print if the user asks to view their list befor
 
 #### Installing C#, .NET, dotnet script, & MySQL
 
-* Install C# and .Net according to your operating system below. 
+* Install C# and .Net according to your operating system below.
 
 ###### For Mac
  * Download this .NET Core SDK (Software Development Kit)[https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.106-macos-x64-installer]. Clicking this link will prompt a .pkg file download from Microsoft.
 * Open the .pkg file. This will launch an installer which will walk you through installation steps. Use the default settings the installer suggests.
-* Confirm the installation is successful by opening your terminal and running the command $ dotnet --version, which should return something like: `2.2.105`. 
+* Confirm the installation is successful by opening your terminal and running the command $ dotnet --version, which should return something like: `2.2.105`.
 
 ###### For Windows (10+)
 * Download either the the 64-bit .NET Core SDK (Software Development Kit)[https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.203-windows-x64-installer]. Clicking these links will prompt a .exe file download from Microsoft.
@@ -67,13 +76,48 @@ Consider what the program should print if the user asks to view their list befor
 #### For Mac & Windows Operating Systems
 * Install dotnet script with the following terminal command `dotnet tool install -g dotnet-script`.
 
+#### Setting up a Local Database
+
+- Download [MySQL Server](https://dev.mysql.com/downloads/file/?id=484914).
+- Download [MySQL Workbench](https://dev.mysql.com/downloads/file/?id=484391).
+- (For more detailed instructions if either of the above technologies are unfamiliar to you, visit [this site](https://www.learnhowtoprogram.com/c-and-net/getting-started-with-c/installing-and-configuring-mysql)).
+- Run `dotnet build` when the project is on your local machine.
+- Run `dotnet ef migrations add Initial`
+  --> If there is an error stating "Unable to resolve project", this means the command wasn't run in the correct directory.
+- Entity creates three files in the Migrations directory.
+- Run the following command: `dotnet ef database update`.
+
+#### MySQL Password Protection & .gitignore
+
+Once the project has been cloned to your computer and you have all the necessary items on your local computer, open the project in the application of your choice.
+
+Create a file in the root directory of the project called "appsettings.json". Add the following snippet of code to the appsettings.json file:
+
+```
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Port=3306;database=registrar;uid=root;pwd=YOUR-PASSWORD-HERE;"
+    }
+}
+```
+
+Where you see "YOUR-PASSWORD-HERE" is where you put the password you created for your MySQL server. Your server name and port might vary depending on your local system. Check MySQL Workbench Connections to determine if the local host and port number match and adjust as needed.
+
+Create a .gitignore file and add the following files & folders to it:
+
+- obj/
+- bin/
+- .vscode/
+- .DS_Store
+- appsettings.json
+
 #### Opening the Project on your Local System
-Once the project has been cloned to your computer and you have all the necessary items on your local computer, open the project in the application of your choice ((Visual Code Studio)[https://code.visualstudio.com/] was used and is recommended by the application builder), and run the following...
 
 * Navigate to the project folder on your Terminal or CMD.
+* Run the command `code .` to open the folder in VS Code. Otherwise, find and open the project folder in the code editor of your choice.
 * `dotnet build` will get bin/ and obj/ folders downloaded.
-* `dotnet run` will run the application. 
-* `dotnet restore` to install packages listed in project's boilerplate. 
+* `dotnet run` will run the application.
+* `dotnet restore` to install packages listed in project's boilerplate.
 
 
 ### Specs
@@ -92,7 +136,7 @@ Expect: listIt("Walk the dog").toEqual("To Do List: Walk the Dog")
 
 ## Known bugs
 
-No known bugs as of now. 
+No known bugs as of now. [Please report any bugs found here.](https://github.com/dani-t-codes/ToDoList.Solution/issues)
 
 ### Legal, or License
 
