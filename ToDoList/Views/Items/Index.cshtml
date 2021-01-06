@@ -14,7 +14,10 @@
 
 @foreach (Item item in Model)
 {
-  <li>@Html.ActionLink($"{item.Description} | {item.DueDate}", "Details", new { id = item.ItemId }) </li> @*@Html.CheckBox($"{item.Completed}", "Details", new { id = item.ItemId})</li>*@
+  @* @if (@Model.Completed == true) {
+    //create a way to separate completed & not completed. Change completed text
+  } *@
+  <li>@Html.ActionLink($"{item.Description} | {item.DueDate}", "Details", new { id = item.ItemId }) | @Html.LabelFor(model => item.Completed) @Html.CheckBoxFor(model => item.Completed)</li>
 }
 
 <p>@Html.ActionLink("Add new item", "Create")</p>

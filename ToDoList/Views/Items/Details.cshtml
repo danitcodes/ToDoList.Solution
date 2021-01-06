@@ -7,7 +7,7 @@
 <h2>Item Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Description):@Html.DisplayFor(model => model.Description)</h3>
-<h4>@Html.DisplayFor(model => model.DueDate) </h4> @*|  @Html.CheckBox(model => model.Completed)</h4>*@
+<h4>@Html.DisplayFor(model => model.DueDate) | @Html.LabelFor(model => model.Completed) @Html.CheckBoxFor(model => model.Completed)</h4>
 
 @if(@Model.Categories.Count == 0)
 {
