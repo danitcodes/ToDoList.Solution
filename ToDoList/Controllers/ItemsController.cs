@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc; //:Controller, ActionResults, etc.
-using ToDoList.Models;
+using Microsoft.AspNetCore.Mvc.Rendering; //ViewBag access for temp data storage from a controller to a view
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq; //allows for Linq's ToList() method
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering; //ViewBag access for temp data storage from a controller to a view
+using ToDoList.Models;
 
 namespace ToDoList.Controllers
 {
@@ -18,6 +18,8 @@ namespace ToDoList.Controllers
 
     public ActionResult Index() //replaces GetAll()
     {
+      List<Item> itemList = _db.Items.ToList();
+      itemList.Sort((x, y) => System.DateTime.Compare(x.DueDate, y.DueDate));
       return View(_db.Items.ToList()); // refers to List on Index View page to pass x data to said view
     }
 
