@@ -15,6 +15,12 @@
   @Html.LabelFor(model => model.Description)
   @Html.EditorFor(model => model.Description)
 
+  @Html.LabelFor(model => model.DueDate)
+  @Html.TextBoxFor(model => model.DueDate, new { @type = "date"})
+
+  @Html.LabelFor(model => model.Completed)
+  @Html.CheckBoxFor(model => model.Completed)
+
   @Html.Label("Select category")
   @Html.DropDownList("CategoryId") //helper method takes Category info from ViewBag & displays to user as a dropdown menu
 

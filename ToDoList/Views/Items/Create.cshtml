@@ -11,6 +11,9 @@
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description)
 
+  @Html.LabelFor(model => model.DueDate)
+  @Html.TextBoxFor(model => model.DueDate, new { @type = "date"})
+
   @Html.Label("Select category") //HTML method LabelFor replaced w/ Label method since Item no longer has expicitly defined Category property
   @Html.DropDownList("CategoryId") //HTML helper method to create HTML dropdown menu --> releates to SelectList created in controller method
 
