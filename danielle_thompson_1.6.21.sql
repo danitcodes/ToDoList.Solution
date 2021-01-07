@@ -1,0 +1,69 @@
+CREATE DATABASE  IF NOT EXISTS `to_do_list` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `to_do_list`;
+-- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
+--
+-- Host: localhost    Database: to_do_list
+-- ------------------------------------------------------
+-- Server version	8.0.15
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `__EFMigrationsHistory`
+--
+
+LOCK TABLES `__EFMigrationsHistory` WRITE;
+/*!40000 ALTER TABLE `__EFMigrationsHistory` DISABLE KEYS */;
+INSERT INTO `__EFMigrationsHistory` VALUES ('20210103231807_Initial','2.2.6-servicing-10079'),('20210106045943_AddItemCompleted','2.2.6-servicing-10079'),('20210106051429_AddItemDueDate','2.2.6-servicing-10079');
+/*!40000 ALTER TABLE `__EFMigrationsHistory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `Categories`
+--
+
+LOCK TABLES `Categories` WRITE;
+/*!40000 ALTER TABLE `Categories` DISABLE KEYS */;
+INSERT INTO `Categories` VALUES (1,'Animals');
+/*!40000 ALTER TABLE `Categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `CategoryItem`
+--
+
+LOCK TABLES `CategoryItem` WRITE;
+/*!40000 ALTER TABLE `CategoryItem` DISABLE KEYS */;
+INSERT INTO `CategoryItem` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,1),(6,3,1);
+/*!40000 ALTER TABLE `CategoryItem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `Items`
+--
+
+LOCK TABLES `Items` WRITE;
+/*!40000 ALTER TABLE `Items` DISABLE KEYS */;
+INSERT INTO `Items` VALUES (1,'Wash doggo',_binary '\0','0001-01-01 00:00:00.000000'),(2,'Fix doggo dreads',_binary '\0','0001-01-01 00:00:00.000000'),(3,'Get doggo flea meds',_binary '','2021-01-08 00:00:00.000000'),(4,'Test task',_binary '\0','2000-01-01 00:00:00.000000');
+/*!40000 ALTER TABLE `Items` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-01-06  8:43:24

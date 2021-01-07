@@ -1,8 +1,9 @@
 # To Do List with MVC Web Interface
 
-#### Homework practice Assignment during Epicodus Coding School, ASP.NET Core MVC Web Interfaces, 12.14.2020
+#### Homework Practice Assignment during Epicodus Coding School, ASP.NET Core MVC & Many-to-Many Relationship Databases
 
 #### By Danielle Thompson
+#### Started 12.14.2020. Last updated 1.7.2021.
 
 ## Description
 
@@ -20,6 +21,8 @@ User: View
 Program: 1. Walk the dog.
 Program: Would you like to add an item to your list or view your list? (Add/View)
 Consider what the program should print if the user asks to view their list before they have added any items to it.
+
+![Many-to-many database relationship schema built with SQL Design Planner](ToDoList/wwwroot/img/To_Do_List_Schema.png "Many-to-many database relationship schema built with SQL Design Planner")
 
 ## Technologies used
 
