@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc; //:Controller, ActionResults, etc.
 using Microsoft.AspNetCore.Mvc.Rendering; //ViewBag access for temp data storage from a controller to a view
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq; //allows for Linq's ToList() method
 using ToDoList.Models;
@@ -19,8 +20,10 @@ namespace ToDoList.Controllers
     public ActionResult Index() //replaces GetAll()
     {
       List<Item> itemList = _db.Items.ToList();
-      itemList.Sort((x, y) => System.DateTime.Compare(x.DueDate, y.DueDate));
-      return View(_db.Items.ToList()); // refers to List on Index View page to pass x data to said view
+      var sortedItems = itemList.OrderBy( x => x.DueDate.Year);
+      // itemList.Sort((x, y) => DateTime.Compare(x.DueDate, y.DueDate));
+      var listAgain = sortedItems.ToList();
+      return View(listAgain); // refers to List on Index View page to pass x data to said view
     }
 
     public ActionResult Create() //same as before w/o Entity - the GET request for creating a new task
