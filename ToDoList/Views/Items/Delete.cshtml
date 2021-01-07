@@ -7,7 +7,7 @@
 <h2>Are you sure you want to delete this?</h2>
 
 @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
-@using (Html.BeginForm()) //HTML helper method BeginForm() creaet POST request to action method whose name matches the .cshtml file it's contained in 
+@using (Html.BeginForm()) //HTML helper method BeginForm() creaet POST request to action method whose name matches the .cshtml file it's contained in
 {
   <input type="submit" value="Delete" />
 }

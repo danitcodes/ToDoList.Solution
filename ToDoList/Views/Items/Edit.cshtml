@@ -22,7 +22,11 @@
   @Html.CheckBoxFor(model => model.Completed)
 
   @Html.Label("Select category")
-  @Html.DropDownList("CategoryId") //helper method takes Category info from ViewBag & displays to user as a dropdown menu
+  @Html.DropDownList("CategoryId")@*, new List<SelectListItem>*@
+    @* {
+      new SelectListItem { Text = "Deactive", Value = "False", Selected = true},
+      new SelectListItem { Text = "Active", Value = "True" }
+    }) *@
 
   <input type="submit" value="Save" />
 }
